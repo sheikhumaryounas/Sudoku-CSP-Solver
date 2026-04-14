@@ -1,36 +1,38 @@
-# Sudoku CSP Solver
+# 🧩 Sudoku CSP Solver
 
-This repository contains an efficient Sudoku solver implemented in Python, which models the puzzle as a formal Constraint Satisfaction Problem (CSP). 
+This repository presents an efficient Sudoku solver implemented in Python, where the puzzle is modeled as a **Constraint Satisfaction Problem (CSP)**.
 
-Rather than relying on naive brute-force combinations, the solver harnesses constraint propagation and heuristic search to drastically minimize the search space. Puzzles of varying difficulty levels are reliably and quickly solved with exceptionally few recursive inferences.
+Instead of relying on brute-force techniques, the solver uses **constraint propagation** and **heuristic-based search** to significantly reduce the search space. As a result, Sudoku puzzles of varying difficulty levels are solved efficiently with minimal backtracking.
 
-## Features & Algorithms Used
-*   **Arc Consistency 3 (AC-3)**: Propagates limits between neighboring cells (boxes in the same row, column, or 3x3 grid) to eliminate fundamentally impossible state values from domains.
-*   **Minimum Remaining Values (MRV)**: A heuristic used during search that reliably selects the unresolved cell with the fewest remaining valid candidate numbers.
-*   **Forward Checking**: Rapidly prunes domains of dependent variables immediately upon assigning a value to a cell, forcing early backtracking before deep search.
-*   **Maintaining Arc Consistency (MAC)**: Implements constraints actively during backtracking to catch nested discrepancies.
+---
 
-## Getting Started
+## 🚀 Features & Algorithms
 
-### Prerequisites
-*   Python 3.x is required to execute the solver. No external dependencies are needed.
+### 🔹 Arc Consistency (AC-3)
+Ensures consistency between variables by eliminating invalid values from domains based on constraints between neighboring cells (same row, column, or 3×3 grid).
 
-### Running the Solver
-You can test the solver against the pre-provided boards representing various difficulties. Run the Python script directly via your terminal/command prompt:
+### 🔹 Minimum Remaining Values (MRV)
+A heuristic that selects the unassigned variable with the **fewest legal values**, helping to reduce branching and improve efficiency.
+
+### 🔹 Forward Checking
+Immediately updates and prunes the domains of neighboring variables after each assignment, preventing invalid paths early in the search.
+
+### 🔹 Maintaining Arc Consistency (MAC)
+Applies AC-3 dynamically during backtracking to maintain consistency throughout the solving process and detect conflicts early.
+
+---
+
+## ⚙️ Getting Started
+
+### 📌 Prerequisites
+- Python **3.x**
+- No external libraries required
+
+---
+
+## ▶️ Running the Solver
+
+Run the solver using the terminal:
 
 ```bash
 python solver.py
-```
-
-The script will iterate over `easy.txt`, `medium.txt`, `hard.txt`, and `veryhard.txt`, print their respective solved grids, and tally up the total backtrack calls and failures across the solve.
-
-### Inserting Custom Boards
-1. Create a `*.txt` file in the root directory (e.g. `myboard.txt`).
-2. Use a format representing 9 rows of 9 consecutive numbers, where purely empty grid spaces are formatted as zeros (`0`).
-3. Add the filename string to the `files` array at the bottom of `solver.py` and execute the program.
-
-## Included Files
-*   `solver.py`: Main executable core of the CSP solver.
-*   `easy.txt`, `medium.txt`, `hard.txt`, `veryhard.txt`: Initial puzzle definitions for algorithm verification.
-*   `sudoku_csp_report.md`: A comprehensive analysis of the CSP logic alongside experimental findings and recursion measurements.
-#
